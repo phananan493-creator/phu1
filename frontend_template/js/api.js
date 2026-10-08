@@ -3,7 +3,7 @@
  * Sinh viên chỉ cần đảm bảo Backend chạy tại cổng 5000, 
  * hoặc thay đổi đường dẫn này khi deploy lên Cloud (Render.com)
  */
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://lhu-ecommerce-api-hoaian.onrender.com/api';
 
 const API = {
   // 1. Danh mục
