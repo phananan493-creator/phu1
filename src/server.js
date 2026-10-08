@@ -17,10 +17,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/api/health', (req, res) => {
+// 1. Đặt API GET / ở đây
+app.get('/', (req, res) => {
   res.status(200).json({
-    status: 'OK',
-    message: 'Hệ thống Quản lý Đơn hàng hoạt động ổn định!'
+    "message": "Chào mừng bạn đến với Máy chủ RESTful API E-Commerce - LHU TMĐT",
+    "version": "1.0.0",
+    "status": "ONLINE"
   });
 });
 
@@ -29,6 +31,7 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 
+// 2. Middleware xử lý 404 LUÔN LUÔN NẰM Ở CUỐI CÙNG (trước app.listen)
 app.use((req, res) => {
   res.status(404).json({
     success: false,
