@@ -8,6 +8,10 @@ const categoryRoutes = require('./routes/categoryRoutes');
 const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 
+const paymentRoutes = require('./routes/paymentRoutes');
+const aiRoutes = require('./routes/aiRoutes');
+const shippingRoutes = require('./routes/shippingRoutes');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -17,12 +21,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 1. Đặt API GET / ở đây
+// 1. Đặt API GET /
 app.get('/', (req, res) => {
   res.status(200).json({
-    "message": "Chào mừng bạn đến với Máy chủ RESTful API E-Commerce - LHU TMĐT",
-    "version": "1.0.0",
-    "status": "ONLINE"
+    message: 'Chào mừng bạn đến với Máy chủ RESTful API E-Commerce - LHU TMĐT',
+    version: '1.0.0',
+    status: 'ONLINE'
   });
 });
 
@@ -31,7 +35,11 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 
-// 2. Middleware xử lý 404 LUÔN LUÔN NẰM Ở CUỐI CÙNG (trước app.listen)
+app.use('/api/payment', paymentRoutes);
+app.use('/api/ai', aiRoutes);
+app.use('/api/shipping', shippingRoutes);
+
+// 2. Middleware xử lý 404 LUÔN LUÔN NẰM Ở CUỐI CÙNG
 app.use((req, res) => {
   res.status(404).json({
     success: false,
